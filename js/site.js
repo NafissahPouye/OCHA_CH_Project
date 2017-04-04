@@ -8,10 +8,18 @@ function generatingComponent(vardata, vargeodata){
   var chCarteDim = cf.dimension(function (d) { return d.country}) ;
   var chCarteGroup = chCarteDim.group().reduceSum( function (d) { return d.phase1+d.phase2+d.phase3to5+d.project_requirement}) ;
   var dateDimension = cf.dimension(function (d) { return d.date});
-  var groupPhase1 = dateDimension.group().reduceSum(function (d){ return d.phase1});
-  var groupPhase2 = dateDimension.group().reduceSum(function (d){ return d.phase2});
-  var groupPhase3to5 = dateDimension.group().reduceSum(function (d){ return d.phase3to5});
-  var groupRequirements = dateDimension.group().reduceSum(function (d){ return d.project_requirement});
+  var groupPhase1 = dateDimension.group().reduceSum(function (d){
+    if(isNaN(d.phase1)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase1;}
+  });
+  var groupPhase2 = dateDimension.group().reduceSum(function (d){
+    if(isNaN(d.phase2)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase2;}
+  });
+  var groupPhase3to5 = dateDimension.group().reduceSum(function (d){
+    if(isNaN(d.phase3to5)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase3to5;}
+  });
+  var groupRequirements = dateDimension.group().reduceSum(function (d){
+    if(isNaN(d.Requirements)){console.log('Not included: ');console.log(d);return 0;} else {return d.Requirements;}
+  });
 
  trends
       .width(550)
