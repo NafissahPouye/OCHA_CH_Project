@@ -48,8 +48,8 @@
 
 #carte {
     height:460px;
-    /*width:100%;*/
 }
+
 
 #wheretitle{
     padding-bottom:10px;
@@ -65,6 +65,12 @@
 
 .colheight{
     height:450px;
+}
+
+.trends{
+   padding-left: 20px;
+   height:650px;
+
 }
 
 .removepadding {

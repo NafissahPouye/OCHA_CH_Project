@@ -3,18 +3,33 @@ function generatingComponent(vardata, vargeodata){
   var lookUp = genLookup(vargeodata) ;
 
   var trends = dc.compositeChart('#CompositeChart') ;
+  var req_trends = dc.lineChart('#Requirement')
 
   var chCarte = dc.leafletChoroplethChart('#carte') ;
 
+   var scale_maxDate =new Date(2016, 3, 15);
+
+  var dateFormat = d3.time.format("%Y-%m-%d");
+    vardata.forEach(function (e) {
+        e.date = dateFormat.parse(e.date);
+    });
+
+  var xScaleRange = d3.time.scale().domain([new Date(2015, 4, 1), scale_maxDate]);
+  function formatDate(value) {
+   var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+   return monthNames[value.getMonth()] + " " + value.getDate();
+};
   var cf = crossfilter(vardata);
 
   var all = cf.groupAll();
 
   var colors = ['#64FE2E','#F7FE2E','#FE2E2E','#2E64FE'] ;
 
+ 
+
   var chCarteDim = cf.dimension(function (d) { return d.country}) ;
 
-  var chCarteGroup = chCarteDim.group().reduceSum( function (d) { return d.phase1+d.phase2+d.phase3to5+d.project_requirement}) ;
+  var chCarteGroup = chCarteDim.group().reduceSum( function (d) { return d.phase1}) ;
 
   var dateDimension = cf.dimension(function (d) { return d.date});
 
@@ -38,19 +53,28 @@ function generatingComponent(vardata, vargeodata){
 
   var groupRequirements = dateDimension.group().reduceSum(function (d){
 
-    if(isNaN(d.Requirements)){console.log('Not included: ');console.log(d);return 0;} else {return d.Requirements;}
+    if(isNaN(d.poject_requirement)){console.log('Not included: ');console.log(d);return 0;} else {return d.poject_requirement;}
 
   });
 
+  req_trends
+            .width(450)
+            .height(160)
+            .dimension(dateDimension)
+            .x(d3.time.scale().domain([new Date(2013, 12, 0), scale_maxDate]))
+            .elasticY(true)
+            .brushOn(false)
+            .group(groupRequirements);
+            //.lineChart(req_trends)
  trends
 
-      .width(550)
+      .width(450)
 
-      .height(475)
+      .height(300)
 
       .dimension(dateDimension)
 
-      .x(d3.scale.linear().domain([2014, 2016]))
+      .x(d3.time.scale().domain([new Date(2013, 12, 0), scale_maxDate]))
 
       .elasticY(true)
 
@@ -62,13 +86,19 @@ function generatingComponent(vardata, vargeodata){
 
         dc.lineChart(trends).group(groupPhase3to5, 'Phase 3 to 5').colors(colors[2]),
 
-        dc.lineChart(trends).group(groupRequirements, 'Project Requirement')
+     //   dc.lineChart(trends).group(groupRequirements, 'Project Requirement')
 
         ])
 
       .brushOn(false)
+      .yAxisPadding(500)
+      .renderHorizontalGridLines(true)
       .xAxisLabel("Date")
       .yAxisLabel("Trends")
+      .legend(dc.legend().x($('#CompositeChart').width()-150).y(0).gap(5))
+      .xAxis().ticks(8);
+      //trends.yAxis().ticks(5);
+      
 
       //.xAxis();
  
@@ -82,6 +112,7 @@ function generatingComponent(vardata, vargeodata){
 //define the map
 
       chCarte.width(450)
+            //.height(460)
 
              .dimension(chCarteDim)
 
