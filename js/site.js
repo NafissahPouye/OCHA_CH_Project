@@ -61,7 +61,8 @@ function generatingComponent(vardata, vargeodata){
             .width(450)
             .height(160)
             .dimension(dateDimension)
-            .x(d3.time.scale().domain([new Date(2013, 12, 0), scale_maxDate]))
+			.x(xScaleRange)
+            //.x(d3.time.scale().domain([new Date(2013, 12, 0), scale_maxDate]))
             .elasticY(true)
             .brushOn(false)
             .group(groupRequirements);
