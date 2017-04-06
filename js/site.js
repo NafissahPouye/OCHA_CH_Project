@@ -53,7 +53,7 @@ function generatingComponent(vardata, vargeodata){
 
   var groupRequirements = dateDimension.group().reduceSum(function (d){
 
-    if(isNaN(d.poject_requirement)){console.log('Not included: ');console.log(d);return 0;} else {return d.poject_requirement;}
+    if(isNaN(d.project_req)){console.log('Not included: ');console.log(d);return 0;} else {return d.project_req;}
 
   });
 
