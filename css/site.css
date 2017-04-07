@@ -16,7 +16,7 @@
   shape-rendering: crispEdges;
 }
 
-.x.axis path {  display: none; }
+.x.axis path {  }
 .legend{
     margin-bottom:76px;
     display:inline-block;
