@@ -67,6 +67,7 @@ function generatingComponent(vardata, vargeodata){
             .elasticY(true)
             .brushOn(false)
             .legend(dc.legend().x($('#Requirement').width()-200).y(0).gap(2))
+            .renderHorizontalGridLines(true)
             .group(groupRequirements, 'Requirements');
             //.lineChart(req_trends)
  trends
