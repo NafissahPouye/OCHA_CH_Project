@@ -3,7 +3,7 @@ function generatingComponent(vardata, vargeodata){
   var lookUp = genLookup(vargeodata) ;
 
   var trends = dc.compositeChart('#CompositeChart') ;
-  var req_trends = dc.lineChart('#Requirement')
+  var req_trends = dc.compositeChart('#Requirement')
 
   var chCarte = dc.leafletChoroplethChart('#carte') ;
 
@@ -23,7 +23,7 @@ function generatingComponent(vardata, vargeodata){
 
   var all = cf.groupAll();
 
-  var colors = ['#64FE2E','#F7FE2E','#FE2E2E','#2E64FE'] ;
+  var colors = ['#31B404','#FFFF00','#FFC000','#C00000','#FF0000', '#023858', '#a6bddb','#3690c0'] ;
 
  //var x = d3.scaleLinear() ;
 //var axis = d3.axisLeft(scale);
@@ -36,51 +36,87 @@ function generatingComponent(vardata, vargeodata){
 
   var groupPhase1 = dateDimension.group().reduceSum(function (d){
 
-    if(isNaN(d.phase1)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase1;}
+    if(isNaN(d.phase1)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase1 / 1000000;}
 
   });
  
   var groupPhase2 = dateDimension.group().reduceSum(function (d){
 
-    if(isNaN(d.phase2)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase2;}
+    if(isNaN(d.phase2)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase2 / 1000000;}
 
   });
 
-  var groupPhase3to5 = dateDimension.group().reduceSum(function (d){
+  var groupPhase3 = dateDimension.group().reduceSum(function (d){
 
-    if(isNaN(d.phase3to5)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase3to5;}
+    if(isNaN(d.phase3)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase3 / 1000000;}
 
   });
+  var groupPhase4 = dateDimension.group().reduceSum(function (d){
 
+    if(isNaN(d.phase4)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase4 / 1000000;}
+
+  });
+var groupPhase5 = dateDimension.group().reduceSum(function (d){
+
+    if(isNaN(d.phase5)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase5 / 1000000;}
+
+  });
   var groupRequirements = dateDimension.group().reduceSum(function (d){
 
-    if(isNaN(d.project_req)){console.log('Not included: ');console.log(d);return 0;} else {return d.project_req;}
+    if(isNaN(d.project_req)){console.log('Not included: ');console.log(d);return 0;} else {return d.project_req / 1000000;}
+
+  });
+  var groupfood_sec_req = dateDimension.group().reduceSum(function (d){
+
+    if(isNaN(d.food_sec_req)){console.log('Not included: ');console.log(d);return 0;} else {return d.food_sec_req / 1000000;}
+
+  });
+  var groupfunding = dateDimension.group().reduceSum(function (d){
+
+    if(isNaN(d.funded)){console.log('Not included: ');console.log(d);return 0;} else {return d.funded / 1000000;}
 
   });
 
   req_trends
             .width(450)
-            .height(160)
+            .height(225)
             .dimension(dateDimension)
-            .x(xScaleRange)
-            .margins({top: 20, right: 5, bottom: 20, left: 80})
+            //.x(xScaleRange)
+            .x(d3.time.scale().domain([new Date(2013, 11, 0), new Date(2017, 3, 31)]))//.range([2014,2017]))
+            // .tickValues([2014,2015,2016,2017])
             .elasticY(true)
-            .brushOn(false)
+            
             .legend(dc.legend().x($('#Requirement').width()-200).y(0).gap(2))
+            
+            //.group(groupRequirements, 'Requirements')
+            .compose([
+                dc.lineChart(req_trends).group(groupRequirements, 'Requirement').colors(colors[5]),
+                dc.lineChart(req_trends).group(groupfood_sec_req, 'Food Sec Requirement').colors(colors[6]),
+                dc.lineChart(req_trends).group(groupfunding, 'Funding').colors(colors[7]),
+              ])
+            .margins({top: 8, right: 12, bottom: 25, left: 60})
+            .brushOn(false)
             .renderHorizontalGridLines(true)
-            .group(groupRequirements, 'Requirements');
-            //.lineChart(req_trends)
+            .xAxis()
+             
+             .xAxis().ticks(4);
+
+            req_trends.yAxis().tickFormat(function (v) {
+            return v + 'M';
+        });
+            
+
  trends
 
       .width(450)
 
-      .height(250)
+      .height(225)
 
       .dimension(dateDimension)
 
-      .x(xScaleRange)
+      //.x(xScaleRange)
 
-      //.x(d3.time.scale().domain([new Date(2013, 12, 0), scale_maxDate]))
+      .x(d3.time.scale().domain([new Date(2013, 11, 0), new Date(2017, 5, 31)]))
 
       .elasticY(true)
 
@@ -90,21 +126,27 @@ function generatingComponent(vardata, vargeodata){
 
         dc.lineChart(trends).group(groupPhase2, 'Phase 2').colors(colors[1]),
 
-        dc.lineChart(trends).group(groupPhase3to5, 'Phase 3+').colors(colors[2]),
+        dc.lineChart(trends).group(groupPhase3, 'Phase 3').colors(colors[2]),
 
-     //   dc.lineChart(trends).group(groupRequirements, 'Project Requirement')
+        dc.lineChart(trends).group(groupPhase4, 'Phase 4').colors(colors[3]),
+
+        dc.lineChart(trends).group(groupPhase3, 'Phase 5').colors(colors[4]),
 
         ])
 
       .brushOn(false)
-      .yAxisPadding(500)
+      //.yAxisPadding(500)
       .renderHorizontalGridLines(true)
-      //.xAxisLabel("Date")
-      //.yAxisLabel("Trends")
-      .margins({top: 15, right: 5, bottom: 20, left: 60})
+      .xAxisLabel("Date")
+      .yAxisLabel("Phases")
+      .margins({top: 8, right: 12, bottom: 25, left: 60})
       .legend(dc.legend().x($('#CompositeChart').width()-170).y(0).gap(5))
-      .xAxis().ticks(8);
-      //trends.yAxis().ticks(5);
+
+      .xAxis().ticks(4);
+      
+      trends.yAxis().tickFormat(function (v) {
+            return v + 'M';
+        });
       
 
       //.xAxis();
