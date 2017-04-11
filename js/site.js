@@ -97,7 +97,7 @@ var groupPhase5 = dateDimension.group().reduceSum(function (d){
             .margins({top: 8, right: 12, bottom: 25, left: 60})
             .brushOn(false)
             .renderHorizontalGridLines(true)
-            //.xAxis()
+            .xAxisLabel("Date")
              
              .xAxis().ticks(4);
 
@@ -137,7 +137,7 @@ var groupPhase5 = dateDimension.group().reduceSum(function (d){
       .brushOn(false)
       //.yAxisPadding(500)
       .renderHorizontalGridLines(true)
-      .xAxisLabel("Date")
+      //.xAxisLabel("Date")
       .yAxisLabel("Phases")
       .margins({top: 8, right: 12, bottom: 25, left: 60})
       .legend(dc.legend().x($('#CompositeChart').width()-170).y(0).gap(5))
