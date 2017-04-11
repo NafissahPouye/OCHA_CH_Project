@@ -97,7 +97,7 @@ var groupPhase5 = dateDimension.group().reduceSum(function (d){
             .margins({top: 8, right: 12, bottom: 25, left: 60})
             .brushOn(false)
             .renderHorizontalGridLines(true)
-            .xAxis()
+            //.xAxis()
              
              .xAxis().ticks(4);
 
