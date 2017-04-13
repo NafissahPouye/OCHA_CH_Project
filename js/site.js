@@ -101,9 +101,9 @@ var groupPhase5 = dateDimension.group().reduceSum(function (d){
              
              .xAxis().ticks(4);
 
-            /*req_trends.yAxis().tickFormat(function (v) {
+            req_trends.yAxis().tickFormat(function (v) {
             return v + 'M';
-        });*/
+        });
             
 
  trends
