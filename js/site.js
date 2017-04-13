@@ -90,9 +90,9 @@ var groupPhase5 = dateDimension.group().reduceSum(function (d){
             
             //.group(groupRequirements, 'Requirements')
             .compose([
-                dc.lineChart(req_trends).group(groupRequirements, 'Requirement').colors(colors[5]),
-                dc.lineChart(req_trends).group(groupfood_sec_req, 'Food Sec Requirement').colors(colors[6]),
-                dc.lineChart(req_trends).group(groupfunding, 'Funding').colors(colors[7]),
+                //dc.lineChart(req_trends).group(groupRequirements, 'Requirement').colors(colors[5]),
+                dc.lineChart(req_trends).group(groupfood_sec_req, 'Food Sec Requirement').colors(colors[5]),
+                dc.lineChart(req_trends).group(groupfunding, 'Funding').colors(colors[6]),
               ])
             .margins({top: 8, right: 12, bottom: 25, left: 60})
             .brushOn(false)
@@ -122,15 +122,15 @@ var groupPhase5 = dateDimension.group().reduceSum(function (d){
 
       .compose([
 
-        dc.lineChart(trends).group(groupPhase1, 'Phase 1').colors(colors[0]),
+        //dc.lineChart(trends).group(groupPhase1, 'Phase 1').colors(colors[0]),
 
-        dc.lineChart(trends).group(groupPhase2, 'Phase 2').colors(colors[1]),
+        dc.lineChart(trends).group(groupPhase2, 'Under Pressure').colors(colors[1]),
 
-        dc.lineChart(trends).group(groupPhase3, 'Phase 3').colors(colors[2]),
+        dc.lineChart(trends).group(groupPhase3, 'Crisis').colors(colors[2]),
 
-        dc.lineChart(trends).group(groupPhase4, 'Phase 4').colors(colors[3]),
+        dc.lineChart(trends).group(groupPhase4, 'Emergency').colors(colors[3]),
 
-        dc.lineChart(trends).group(groupPhase3, 'Phase 5').colors(colors[4]),
+        dc.lineChart(trends).group(groupPhase3, 'Famine').colors(colors[4]),
 
         ])
 
@@ -139,8 +139,8 @@ var groupPhase5 = dateDimension.group().reduceSum(function (d){
       .renderHorizontalGridLines(true)
       //.xAxisLabel("Date")
       .yAxisLabel("Phases")
-      .margins({top: 8, right: 12, bottom: 25, left: 60})
-      .legend(dc.legend().x($('#CompositeChart').width()-170).y(0).gap(5))
+      .margins({top: 15, right: 12, bottom: 23, left: 60})
+      .legend(dc.legend().x($('#CompositeChart').width()-200).y(0).gap(1))
 
       .xAxis().ticks(4);
       
