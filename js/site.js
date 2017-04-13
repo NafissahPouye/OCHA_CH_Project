@@ -23,7 +23,7 @@ function generatingComponent(vardata, vargeodata){
 
   var all = cf.groupAll();
 
-  var colors = ['#31B404','#FFFF00','#FFC000','#C00000','#FF0000', '#023858', '#a6bddb','#3690c0'] ;
+  var colors = ['#FAE61E','#FAE61E','#E67800','#C80000','#640000', '#023858', '#a6bddb','#3690c0'] ;
 
  //var x = d3.scaleLinear() ;
 //var axis = d3.axisLeft(scale);
@@ -36,29 +36,29 @@ function generatingComponent(vardata, vargeodata){
 
   var groupPhase1 = dateDimension.group().reduceSum(function (d){
 
-    if(isNaN(d.phase1)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase1 / 1000000;}
+    if(isNaN(d.phase1)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase1 / 100000;}
 
   });
  
   var groupPhase2 = dateDimension.group().reduceSum(function (d){
 
-    if(isNaN(d.phase2)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase2 / 1000000;}
+    if(isNaN(d.phase2)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase2 / 100000;}
 
   });
 
   var groupPhase3 = dateDimension.group().reduceSum(function (d){
 
-    if(isNaN(d.phase3)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase3 / 1000000;}
+    if(isNaN(d.phase3)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase3 / 100000;}
 
   });
   var groupPhase4 = dateDimension.group().reduceSum(function (d){
 
-    if(isNaN(d.phase4)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase4 / 1000000;}
+    if(isNaN(d.phase4)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase4 / 100000;}
 
   });
 var groupPhase5 = dateDimension.group().reduceSum(function (d){
 
-    if(isNaN(d.phase5)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase5 / 1000000;}
+    if(isNaN(d.phase5)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase5 / 100000;}
 
   });
   var groupRequirements = dateDimension.group().reduceSum(function (d){
@@ -68,25 +68,25 @@ var groupPhase5 = dateDimension.group().reduceSum(function (d){
   });
   var groupfood_sec_req = dateDimension.group().reduceSum(function (d){
 
-    if(isNaN(d.food_sec_req)){console.log('Not included: ');console.log(d);return 0;} else {return d.food_sec_req / 1000000;}
+    if(isNaN(d.food_sec_req)){console.log('Not included: ');console.log(d);return 0;} else {return d.food_sec_req ;}
 
   });
   var groupfunding = dateDimension.group().reduceSum(function (d){
 
-    if(isNaN(d.funded)){console.log('Not included: ');console.log(d);return 0;} else {return d.funded / 1000000;}
+    if(isNaN(d.funded)){console.log('Not included: ');console.log(d);return 0;} else {return d.funded ;}
 
   });
 
   req_trends
-            .width(450)
-            .height(225)
+            .width(550)
+            .height(250)
             .dimension(dateDimension)
             //.x(xScaleRange)
             .x(d3.time.scale().domain([new Date(2013, 11, 0), new Date(2017, 3, 31)]))//.range([2014,2017]))
             // .tickValues([2014,2015,2016,2017])
             .elasticY(true)
             
-            .legend(dc.legend().x($('#Requirement').width()-200).y(0).gap(2))
+            .legend(dc.legend().x($('#Requirement').width()-150).y(0).gap(2))
             
             //.group(groupRequirements, 'Requirements')
             .compose([
@@ -94,23 +94,23 @@ var groupPhase5 = dateDimension.group().reduceSum(function (d){
                 dc.lineChart(req_trends).group(groupfood_sec_req, 'Food Sec Requirement').colors(colors[5]),
                 dc.lineChart(req_trends).group(groupfunding, 'Funding').colors(colors[6]),
               ])
-            .margins({top: 8, right: 12, bottom: 25, left: 60})
+            .margins({top: 10, right: 10, bottom: 20, left: 40})
             .brushOn(false)
             .renderHorizontalGridLines(true)
             .xAxisLabel("Date")
              
              .xAxis().ticks(4);
 
-            req_trends.yAxis().tickFormat(function (v) {
+            /*req_trends.yAxis().tickFormat(function (v) {
             return v + 'M';
-        });
+        });*/
             
 
  trends
 
-      .width(450)
+      .width(550)
 
-      .height(225)
+      .height(250)
 
       .dimension(dateDimension)
 
@@ -130,7 +130,7 @@ var groupPhase5 = dateDimension.group().reduceSum(function (d){
 
         dc.lineChart(trends).group(groupPhase4, 'Emergency').colors(colors[3]),
 
-        dc.lineChart(trends).group(groupPhase3, 'Famine').colors(colors[4]),
+        dc.lineChart(trends).group(groupPhase5, 'Famine').colors(colors[4]),
 
         ])
 
@@ -138,15 +138,23 @@ var groupPhase5 = dateDimension.group().reduceSum(function (d){
       //.yAxisPadding(500)
       .renderHorizontalGridLines(true)
       //.xAxisLabel("Date")
-      .yAxisLabel("Phases")
-      .margins({top: 15, right: 12, bottom: 23, left: 60})
-      .legend(dc.legend().x($('#CompositeChart').width()-200).y(0).gap(1))
+      .yAxisLabel("Population per thousand")
+      .margins({top: 10, right: 10, bottom: 20, left: 40})
+      .legend(dc.legend().x($('#CompositeChart').width()-110).y(0).gap(1))
+      //.xAxis().tickFormat(function(v) { return "|"; })
 
-      .xAxis().ticks(4);
+      //begin test
+          //trends.renderlet(function (chart) {
+   // rotate x-axis labels
+//trends.selectAll('g.x text')
+             //.attr('transform', 'translate(-10,10) rotate(315)')})
+      //end test
+
+      .xAxis().ticks(7);
       
-      trends.yAxis().tickFormat(function (v) {
+      /*trends.yAxis().tickFormat(function (v) {
             return v + 'M';
-        });
+        });*/
       
 
       //.xAxis();
@@ -167,7 +175,7 @@ var groupPhase5 = dateDimension.group().reduceSum(function (d){
 
              .group(chCarteGroup)
 
-             .center([1,1])
+             .center([0,0])
 
              .zoom(0)
 
