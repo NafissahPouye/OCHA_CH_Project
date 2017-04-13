@@ -138,7 +138,7 @@ var groupPhase5 = dateDimension.group().reduceSum(function (d){
       //.yAxisPadding(500)
       .renderHorizontalGridLines(true)
       //.xAxisLabel("Date")
-      .yAxisLabel("Population per thousand")
+      .yAxisLabel("Population per 100,000")
       .margins({top: 10, right: 10, bottom: 20, left: 40})
       .legend(dc.legend().x($('#CompositeChart').width()-110).y(0).gap(1))
       //.xAxis().tickFormat(function(v) { return "|"; })
