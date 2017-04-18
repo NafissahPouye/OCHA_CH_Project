@@ -8,8 +8,13 @@ function generatingComponent(vardata, vargeodata){
   var chCarte = dc.leafletChoroplethChart('#carte') ;
 
    var scale_maxDate = new Date(2016, 3, 10);
+   var numberFormat = d3.format('.2f');
 
   var dateFormat = d3.time.format("%Y-%m-%d");
+  function formatDate(value) {
+   var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+   return monthNames[value.getMonth()] + " " + value.getDate();
+};
     vardata.forEach(function (e) {
         e.date = dateFormat.parse(e.date);
     });
@@ -36,29 +41,29 @@ function generatingComponent(vardata, vargeodata){
 
   var groupPhase1 = dateDimension.group().reduceSum(function (d){
 
-    if(isNaN(d.phase1)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase1 / 100000;}
+    if(isNaN(d.phase1)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase1 / 1000;}
 
   });
  
   var groupPhase2 = dateDimension.group().reduceSum(function (d){
 
-    if(isNaN(d.phase2)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase2 / 100000;}
+    if(isNaN(d.phase2)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase2 / 1000;}
 
   });
 
   var groupPhase3 = dateDimension.group().reduceSum(function (d){
 
-    if(isNaN(d.phase3)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase3 / 100000;}
+    if(isNaN(d.phase3)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase3 / 1000;}
 
   });
   var groupPhase4 = dateDimension.group().reduceSum(function (d){
 
-    if(isNaN(d.phase4)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase4 / 100000;}
+    if(isNaN(d.phase4)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase4 / 1000;}
 
   });
 var groupPhase5 = dateDimension.group().reduceSum(function (d){
 
-    if(isNaN(d.phase5)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase5 / 100000;}
+    if(isNaN(d.phase5)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase5 / 1000;}
 
   });
   var groupRequirements = dateDimension.group().reduceSum(function (d){
@@ -77,88 +82,73 @@ var groupPhase5 = dateDimension.group().reduceSum(function (d){
 
   });
 
+
+
   req_trends
             .width(550)
-            .height(250)
+            .height(230)
             .dimension(dateDimension)
-            //.x(xScaleRange)
-            .x(d3.time.scale().domain([new Date(2013, 11, 0), new Date(2017, 3, 31)]))//.range([2014,2017]))
-            // .tickValues([2014,2015,2016,2017])
+            .x(d3.time.scale().domain([new Date(2013, 11, 0), new Date(2017, 3, 31)]))
             .elasticY(true)
-            
-            .legend(dc.legend().x($('#Requirement').width()-150).y(0).gap(2))
-            
-            //.group(groupRequirements, 'Requirements')
+            .legend(dc.legend().x($('#Requirement').width()-150).y(0).gap(3))
+            .valueAccessor(function(d){return d.value.avg;})
+            .shareTitle(false)
+
+
             .compose([
-                //dc.lineChart(req_trends).group(groupRequirements, 'Requirement').colors(colors[5]),
-                dc.lineChart(req_trends).group(groupfood_sec_req, 'Food Sec Requirement').colors(colors[5]),
-                dc.lineChart(req_trends).group(groupfunding, 'Funding').colors(colors[6]),
+                dc.lineChart(req_trends).group(groupfood_sec_req, 'Food Sec Requirement').colors(colors[5]).title(function (d) { return [dateFormat(d.key),  "Food Sec Req: " + numberFormat(d.value) + ' Million US $'].join('\n'); }),
+                dc.lineChart(req_trends).group(groupfunding, 'Funding').colors(colors[6]).title(function (d) { return [dateFormat(d.key), "Funding: " + numberFormat(d.value) + ' Million US $'].join('\n'); }),
               ])
-            .margins({top: 10, right: 10, bottom: 20, left: 40})
+            .margins({top: 20, right: 0, bottom: 30, left: 60})
             .brushOn(false)
             .renderHorizontalGridLines(true)
+            .renderTitle(true)
             .xAxisLabel("Date")
-             
-             .xAxis().ticks(4);
-
+            .xAxis().ticks(4)
             req_trends.yAxis().tickFormat(function (v) {
             return v + 'M';
         });
             
-
+           
  trends
 
       .width(550)
 
-      .height(250)
+      .height(260)
 
       .dimension(dateDimension)
-
-      //.x(xScaleRange)
 
       .x(d3.time.scale().domain([new Date(2013, 11, 0), new Date(2017, 5, 31)]))
 
       .elasticY(true)
 
+      .valueAccessor(function(d){return d.value.avg;})
+            
+      .shareTitle(false)
+
       .compose([
 
-        //dc.lineChart(trends).group(groupPhase1, 'Phase 1').colors(colors[0]),
+        dc.lineChart(trends).group(groupPhase2, 'Under Pressure').colors(colors[1]).title(function (d) { return [ dateFormat(d.key), 'Under Pressure:' + numberFormat(d.value) ].join('\n'); }),
 
-        dc.lineChart(trends).group(groupPhase2, 'Under Pressure').colors(colors[1]),
+        dc.lineChart(trends).group(groupPhase3, 'Crisis').colors(colors[2]).title(function (d) { return [dateFormat(d.key), "Crisis: " + numberFormat(d.value)].join('\n'); }),
 
-        dc.lineChart(trends).group(groupPhase3, 'Crisis').colors(colors[2]),
+        dc.lineChart(trends).group(groupPhase4, 'Emergency').colors(colors[3]).title(function (d) { return [dateFormat(d.key), "Emergency: " + numberFormat(d.value) ].join('\n'); }),
 
-        dc.lineChart(trends).group(groupPhase4, 'Emergency').colors(colors[3]),
-
-        dc.lineChart(trends).group(groupPhase5, 'Famine').colors(colors[4]),
+        dc.lineChart(trends).group(groupPhase5, 'Famine').colors(colors[4]).title(function (d) { return [dateFormat(d.key), "Famine: " + numberFormat(d.value) ].join('\n'); }),
 
         ])
 
       .brushOn(false)
-      //.yAxisPadding(500)
       .renderHorizontalGridLines(true)
-      //.xAxisLabel("Date")
-      .yAxisLabel("Population per 100,000")
-      .margins({top: 10, right: 10, bottom: 20, left: 40})
-      .legend(dc.legend().x($('#CompositeChart').width()-110).y(0).gap(1))
-      //.xAxis().tickFormat(function(v) { return "|"; })
-
-      //begin test
-          //trends.renderlet(function (chart) {
-   // rotate x-axis labels
-//trends.selectAll('g.x text')
-             //.attr('transform', 'translate(-10,10) rotate(315)')})
-      //end test
-
+      .yAxisLabel("Population")
+      .margins({top: 20, right: 0, bottom: 20, left: 60})
+      .legend(dc.legend().x($('#CompositeChart').width()-110).y(0).gap(2))
       .xAxis().ticks(7);
       
-      /*trends.yAxis().tickFormat(function (v) {
-            return v + 'M';
-        });*/
+      trends.yAxis().tickFormat(function (v) {
+            return v + 'k';
+        });
       
-
-      //.xAxis();
- 
 
   dc.dataCount('count-info')
 
@@ -168,14 +158,15 @@ var groupPhase5 = dateDimension.group().reduceSum(function (d){
 
 //define the map
 
-      chCarte.width(100)
-            //.height(460)
+      chCarte.width(4)
 
+             .mapOptions(true)
+            
              .dimension(chCarteDim)
 
              .group(chCarteGroup)
 
-             .center([0,0])
+             .center([1.1,1.1])
 
              .zoom(0)
 
