@@ -11,6 +11,8 @@ function generatingComponent(vardata, vargeodata){
    var numberFormat = d3.format('.2f');
 
   var dateFormat = d3.time.format("%Y-%m-%d");
+  var dateFormatPretty = d3.time.format("%b %Y");
+  var dateFormatPretty1 = d3.time.format("%Y");
   function formatDate(value) {
    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
    return monthNames[value.getMonth()] + " " + value.getDate();
@@ -68,21 +70,24 @@ var groupPhase5 = dateDimension.group().reduceSum(function (d){
   });
   var groupRequirements = dateDimension.group().reduceSum(function (d){
 
-    if(isNaN(d.project_req)){console.log('Not included: ');console.log(d);return 0;} else {return d.project_req / 1000000;}
+    if(isNaN(d.project_req)){console.log('Not included: ');console.log(d);return 0;} else { return d.project_req / 1000000;}
 
   });
-  var groupfood_sec_req = dateDimension.group().reduceSum(function (d){
+  var groupfood_sec_req = dateDimension.group().reduceSum(function (d) { return d.food_sec_req ;})
 
-    if(isNaN(d.food_sec_req)){console.log('Not included: ');console.log(d);return 0;} else {return d.food_sec_req ;}
+  var groupFoodsec = {all:function () {return groupfood_sec_req.all().filter(function(d) {
+      return d.value != 0;
+    })
+   }
+};
+  
+  var groupfunding = dateDimension.group().reduceSum(function (d){ return d.funded ;})
 
-  });
-  var groupfunding = dateDimension.group().reduceSum(function (d){
-
-    if(isNaN(d.funded)){console.log('Not included: ');console.log(d);return 0;} else {return d.funded ;}
-
-  });
-
-
+  var groupFundings = {all:function () {return groupfunding.all().filter(function(d) {
+      return d.value != 0;
+    })
+   }
+};
 
   req_trends
             .width(550)
@@ -93,21 +98,20 @@ var groupPhase5 = dateDimension.group().reduceSum(function (d){
             .legend(dc.legend().x($('#Requirement').width()-150).y(0).gap(3))
             .valueAccessor(function(d){return d.value.avg;})
             .shareTitle(false)
-
-
             .compose([
-                dc.lineChart(req_trends).group(groupfood_sec_req, 'Food Sec Requirement').colors(colors[5]).title(function (d) { return [dateFormat(d.key),  "Food Sec Req: " + numberFormat(d.value) + ' Million US $'].join('\n'); }),
-                dc.lineChart(req_trends).group(groupfunding, 'Funding').colors(colors[6]).title(function (d) { return [dateFormat(d.key), "Funding: " + numberFormat(d.value) + ' Million US $'].join('\n'); }),
+                dc.lineChart(req_trends).group(groupFoodsec, 'Food Sec Requirement').colors(colors[5]).title(function (d) { return [dateFormatPretty1(d.key),  "Food Sec Req: " + numberFormat(d.value) + ' Million US $'].join('\n'); }),
+                dc.lineChart(req_trends).group(groupFundings, 'Funding').colors(colors[6]).title(function (d) { return [dateFormatPretty1(d.key), "Funding: " + numberFormat(d.value) + ' Million US $'].join('\n'); }),
               ])
             .margins({top: 20, right: 0, bottom: 30, left: 60})
             .brushOn(false)
             .renderHorizontalGridLines(true)
             .renderTitle(true)
             .xAxisLabel("Date")
-            .xAxis().ticks(4)
+            .xAxis().ticks(3)
             req_trends.yAxis().tickFormat(function (v) {
             return v + 'M';
         });
+
             
            
  trends
@@ -128,13 +132,13 @@ var groupPhase5 = dateDimension.group().reduceSum(function (d){
 
       .compose([
 
-        dc.lineChart(trends).group(groupPhase2, 'Under Pressure').colors(colors[1]).title(function (d) { return [ dateFormat(d.key), 'Under Pressure:' + numberFormat(d.value) ].join('\n'); }),
+        dc.lineChart(trends).group(groupPhase2, 'Under Pressure').colors(colors[1]).title(function (d) { return [ dateFormatPretty(d.key), 'Under Pressure:' + numberFormat(d.value) ].join('\n'); }),
 
-        dc.lineChart(trends).group(groupPhase3, 'Crisis').colors(colors[2]).title(function (d) { return [dateFormat(d.key), "Crisis: " + numberFormat(d.value)].join('\n'); }),
+        dc.lineChart(trends).group(groupPhase3, 'Crisis').colors(colors[2]).title(function (d) { return [dateFormatPretty(d.key), "Crisis: " + numberFormat(d.value)].join('\n'); }),
 
-        dc.lineChart(trends).group(groupPhase4, 'Emergency').colors(colors[3]).title(function (d) { return [dateFormat(d.key), "Emergency: " + numberFormat(d.value) ].join('\n'); }),
+        dc.lineChart(trends).group(groupPhase4, 'Emergency').colors(colors[3]).title(function (d) { return [dateFormatPretty(d.key), "Emergency: " + numberFormat(d.value) ].join('\n'); }),
 
-        dc.lineChart(trends).group(groupPhase5, 'Famine').colors(colors[4]).title(function (d) { return [dateFormat(d.key), "Famine: " + numberFormat(d.value) ].join('\n'); }),
+        dc.lineChart(trends).group(groupPhase5, 'Famine').colors(colors[4]).title(function (d) { return [dateFormatPretty(d.key), "Famine: " + numberFormat(d.value) ].join('\n'); }),
 
         ])
 
@@ -213,6 +217,7 @@ var groupPhase5 = dateDimension.group().reduceSum(function (d){
         var bounds = d3.geo.bounds(geodata) ;
 
         map.fitBounds([[bounds[0][1],bounds[0][0]],[bounds[1][1],bounds[1][0]]]);
+
 
       }
 

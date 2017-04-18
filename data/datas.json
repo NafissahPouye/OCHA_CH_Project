@@ -33,7 +33,7 @@
     "phase4": 22136,
     "phase5": 0,
     "food_sec_req": 22,
-    "funded": 9
+    "funded": 0
   },
   {
     "country": "Burkina Faso",
@@ -45,7 +45,7 @@
     "phase4": 0,
     "phase5": 0,
     "food_sec_req": 23,
-    "funded": 7
+    "funded": 0
   },
   {
     "country": "Burkina Faso",
@@ -188,8 +188,8 @@
     "phase3": 448269,
     "phase4": 9451,
     "phase5": 0,
-    "food_sec_req": 213,
-    "funded": 79
+    "food_sec_req": 0,
+    "funded": 0
   },
   {
     "country": "Chad",
@@ -200,8 +200,8 @@
     "phase3": 387222,
     "phase4": 10503,
     "phase5": 0,
-    "food_sec_req": 226,
-    "funded": 150
+    "food_sec_req": 0,
+    "funded": 0
   },
   {
     "country": "Chad",
@@ -212,8 +212,8 @@
     "phase3": 300984,
     "phase4": 0,
     "phase5": 0,
-    "food_sec_req": 207,
-    "funded": 95
+    "food_sec_req": 0,
+    "funded": 0
   },
   {
     "country": "Chad",
@@ -272,8 +272,8 @@
     "phase3": 74552,
     "phase4": 7615,
     "phase5": 0,
-    "food_sec_req": 12,
-    "funded": 3
+    "food_sec_req": 0,
+    "funded": 0
   },
   {
     "country": "Gambia",
@@ -284,7 +284,7 @@
     "phase3": 53600,
     "phase4": 0,
     "phase5": 0,
-    "food_sec_req": 16,
+    "food_sec_req": 0,
     "funded": 0
   },
   {
@@ -296,7 +296,7 @@
     "phase3": 35741,
     "phase4": 0,
     "phase5": 0,
-    "food_sec_req": 6,
+    "food_sec_req": 0,
     "funded": 0
   },
   {
@@ -422,26 +422,14 @@
   {
     "country": "Mali",
     "country_code": "MLI",
-    "date": "2014-11-01",
-    "phase1": 13161322,
-    "phase2": 1681313,
-    "phase3": 263039,
-    "phase4": 0,
-    "phase5": 0,
-    "food_sec_req": 0,
-    "funded": 2
-  },
-  {
-    "country": "Mali",
-    "country_code": "MLI",
     "date": "2015-11-15",
     "phase1": 13587339,
     "phase2": 1892889,
     "phase3": 114764,
     "phase4": 4010,
     "phase5": 0,
-    "food_sec_req": 192,
-    "funded": 128
+    "food_sec_req": 0,
+    "funded": 0
   },
   {
     "country": "Mali",
@@ -452,8 +440,8 @@
     "phase3": 121568,
     "phase4": 0,
     "phase5": 0,
-    "food_sec_req": 126,
-    "funded": 67
+    "food_sec_req": 0,
+    "funded": 0
   },
   {
     "country": "Mali",
@@ -476,8 +464,8 @@
     "phase3": 30753,
     "phase4": 0,
     "phase5": 0,
-    "food_sec_req": 0,
-    "funded": 2
+    "food_sec_req": 32,
+    "funded": 9
   },
   {
     "country": "Mauritania",
@@ -488,8 +476,8 @@
     "phase3": 259335,
     "phase4": 0,
     "phase5": 0,
-    "food_sec_req": 32,
-    "funded": 9
+    "food_sec_req": 26,
+    "funded": 18
   },
   {
     "country": "Mauritania",
@@ -500,8 +488,8 @@
     "phase3": 93084,
     "phase4": 0,
     "phase5": 0,
-    "food_sec_req": 26,
-    "funded": 18
+    "food_sec_req": 15,
+    "funded": 2
   },
   {
     "country": "Mauritania",
@@ -512,8 +500,8 @@
     "phase3": 247859,
     "phase4": 0,
     "phase5": 0,
-    "food_sec_req": 15,
-    "funded": 2
+    "food_sec_req": 0,
+    "funded": 0
   },
   {
     "country": "Mauritania",
@@ -525,7 +513,7 @@
     "phase4": 0,
     "phase5": 0,
     "food_sec_req": 0,
-    "funded": 2
+    "funded": 0
   },
   {
     "country": "Mauritania",
@@ -536,8 +524,8 @@
     "phase3": 118851,
     "phase4": 0,
     "phase5": 0,
-    "food_sec_req": 26,
-    "funded": 18
+    "food_sec_req": 0,
+    "funded": 0
   },
   {
     "country": "Mauritania",
@@ -596,8 +584,8 @@
     "phase3": 466942,
     "phase4": 12873,
     "phase5": 0,
-    "food_sec_req": 201,
-    "funded": 130
+    "food_sec_req": 0,
+    "funded": 0
   },
   {
     "country": "Niger",
@@ -608,8 +596,8 @@
     "phase3": 321732,
     "phase4": 4965,
     "phase5": 0,
-    "food_sec_req": 143,
-    "funded": 21
+    "food_sec_req": 0,
+    "funded": 0
   },
   {
     "country": "Niger",
@@ -644,8 +632,8 @@
     "phase3": 6196714,
     "phase4": 1829349,
     "phase5": 55013,
-    "food_sec_req": 158,
-    "funded": 70
+    "food_sec_req": 0,
+    "funded": 0
   },
   {
     "country": "Nigeria",
@@ -704,8 +692,8 @@
     "phase3": 916325,
     "phase4": 1026,
     "phase5": 0,
-    "food_sec_req": 29,
-    "funded": 7
+    "food_sec_req": 0,
+    "funded": 0
   },
   {
     "country": "Senegal",
@@ -716,8 +704,8 @@
     "phase3": 30914,
     "phase4": 0,
     "phase5": 0,
-    "food_sec_req": 32,
-    "funded": 4
+    "food_sec_req": 0,
+    "funded": 0
   },
   {
     "country": "Senegal",
@@ -728,8 +716,8 @@
     "phase3": 358291,
     "phase4": 26623,
     "phase5": 0,
-    "food_sec_req": 10,
-    "funded": 1
+    "food_sec_req": 0,
+    "funded": 0
   },
   {
     "country": "Senegal",
