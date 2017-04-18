@@ -8,7 +8,7 @@ function generatingComponent(vardata, vargeodata){
   var chCarte = dc.leafletChoroplethChart('#carte') ;
 
    var scale_maxDate = new Date(2016, 3, 10);
-   var numberFormat = d3.format('.2f');
+   var numberFormat = d3.format(',f');
 
   var dateFormat = d3.time.format("%Y-%m-%d");
   var dateFormatPretty = d3.time.format("%b %Y");
@@ -49,33 +49,38 @@ function generatingComponent(vardata, vargeodata){
  
   var groupPhase2 = dateDimension.group().reduceSum(function (d){
 
-    if(isNaN(d.phase2)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase2 / 1000;}
+    if(isNaN(d.phase2)){console.log('Not included: ');console.log(d);return 0;} else {return Math.round(d.phase2 / 1000);}
 
   });
 
   var groupPhase3 = dateDimension.group().reduceSum(function (d){
 
-    if(isNaN(d.phase3)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase3 / 1000;}
+    if(isNaN(d.phase3)){console.log('Not included: ');console.log(d);return 0;} else {return Math.round(d.phase3 / 1000);}
 
   });
   var groupPhase4 = dateDimension.group().reduceSum(function (d){
 
-    if(isNaN(d.phase4)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase4 / 1000;}
+    if(isNaN(d.phase4)){console.log('Not included: ');console.log(d);return 0;} else {return Math.round(d.phase4 / 1000);}
 
   });
 var groupPhase5 = dateDimension.group().reduceSum(function (d){
 
-    if(isNaN(d.phase5)){console.log('Not included: ');console.log(d);return 0;} else {return d.phase5 / 1000;}
+    if(isNaN(d.phase5)){console.log('Not included: ');console.log(d);return 0;} else {return Math.round(d.phase5 / 1000);}
 
   });
-  var groupRequirements = dateDimension.group().reduceSum(function (d){
+  var groupFoodsec = dateDimension.group().reduceSum(function (d){
 
-    if(isNaN(d.project_req)){console.log('Not included: ');console.log(d);return 0;} else { return d.project_req / 1000000;}
+    if(isNaN(d.food_sec_req)){console.log('Not included: ');console.log(d);return 0;} else { return d.food_sec_req;}
 
   });
-  var groupfood_sec_req = dateDimension.group().reduceSum(function (d) { return d.food_sec_req ;})
+  var groupFundings = dateDimension.group().reduceSum(function (d){
 
-  var groupFoodsec = {all:function () {return groupfood_sec_req.all().filter(function(d) {
+    if(isNaN(d.funded)){console.log('Not included: ');console.log(d);return 0;} else { return d.funded;}
+
+  });
+ // var groupfood_sec_req = dateDimension.group().reduceSum(function (d) { return d.food_sec_req ;})
+
+  /*var groupFoodsec = {all:function () {return groupfood_sec_req.all().filter(function(d) {
       return d.value != 0;
     })
    }
@@ -88,7 +93,7 @@ var groupPhase5 = dateDimension.group().reduceSum(function (d){
     })
    }
 };
-
+*/
   req_trends
             .width(550)
             .height(230)
@@ -132,13 +137,13 @@ var groupPhase5 = dateDimension.group().reduceSum(function (d){
 
       .compose([
 
-        dc.lineChart(trends).group(groupPhase2, 'Under Pressure').colors(colors[1]).title(function (d) { return [ dateFormatPretty(d.key), 'Under Pressure:' + numberFormat(d.value) ].join('\n'); }),
+        dc.lineChart(trends).group(groupPhase2, 'Under Pressure').colors(colors[1]).title(function (d) { return [ dateFormatPretty(d.key), "Under Pressure:  " + Math.round(d.value) ].join('\n'); }),
 
-        dc.lineChart(trends).group(groupPhase3, 'Crisis').colors(colors[2]).title(function (d) { return [dateFormatPretty(d.key), "Crisis: " + numberFormat(d.value)].join('\n'); }),
+        dc.lineChart(trends).group(groupPhase3, 'Crisis').colors(colors[2]).title(function (d) { return [dateFormatPretty(d.key), "Crisis:  " + Math.round(d.value)].join('\n'); }),
 
-        dc.lineChart(trends).group(groupPhase4, 'Emergency').colors(colors[3]).title(function (d) { return [dateFormatPretty(d.key), "Emergency: " + numberFormat(d.value) ].join('\n'); }),
+        dc.lineChart(trends).group(groupPhase4, 'Emergency').colors(colors[3]).title(function (d) { return [dateFormatPretty(d.key), "Emergency:  " + Math.round(d.value)].join('\n'); }),
 
-        dc.lineChart(trends).group(groupPhase5, 'Famine').colors(colors[4]).title(function (d) { return [dateFormatPretty(d.key), "Famine: " + numberFormat(d.value) ].join('\n'); }),
+        dc.lineChart(trends).group(groupPhase5, 'Famine').colors(colors[4]).title(function (d) { return [dateFormatPretty(d.key), "Famine:  " + Math.round(d.value) ].join('\n'); }),
 
         ])
 

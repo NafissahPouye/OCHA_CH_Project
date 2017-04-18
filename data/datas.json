@@ -261,7 +261,7 @@
     "phase4": 0,
     "phase5": 0,
     "food_sec_req": 6,
-    "funded": 0
+    "funded": 1
   },
   {
     "country": "Gambia",
@@ -278,7 +278,7 @@
   {
     "country": "Gambia",
     "country_code": "GMB",
-    "date": "2015-11-15",
+    "date": "2015-11-01",
     "phase1": 1071614,
     "phase2": 373219,
     "phase3": 53600,
@@ -350,7 +350,7 @@
   {
     "country": "Guinea-Bissau",
     "country_code": "GNB",
-    "date": "2015-11-15",
+    "date": "2015-11-01",
     "phase1": 1079428,
     "phase2": 72141,
     "phase3": 2910,
@@ -418,6 +418,18 @@
     "phase5": 0,
     "food_sec_req": 93,
     "funded": 10
+  },
+  {
+    "country": "Mali",
+    "country_code": "MLI",
+    "date": "2014-11-01",
+    "phase1": 13161322,
+    "phase2": 1681313,
+    "phase3": 263039,
+    "phase4": 0,
+    "phase5": 0,
+    "food_sec_req": 0,
+    "funded": 0
   },
   {
     "country": "Mali",
@@ -506,7 +518,7 @@
   {
     "country": "Mauritania",
     "country_code": "MRT",
-    "date": "2015-11-15",
+    "date": "2015-11-01",
     "phase1": 2972645,
     "phase2": 625939,
     "phase3": 149048,
@@ -542,6 +554,18 @@
   {
     "country": "Niger",
     "country_code": "NER",
+    "date": "2014-11-01",
+    "phase1": 14692740,
+    "phase2": 2170723,
+    "phase3": 403571,
+    "phase4": 1131,
+    "phase5": 0,
+    "food_sec_req": 170,
+    "funded": 91
+  },
+  {
+    "country": "Niger",
+    "country_code": "NER",
     "date": "2015-03-01",
     "phase1": 12631580,
     "phase2": 3373239,
@@ -562,18 +586,6 @@
     "phase5": 0,
     "food_sec_req": 143,
     "funded": 21
-  },
-  {
-    "country": "Niger",
-    "country_code": "NER",
-    "date": "2014-11-01",
-    "phase1": 14692740,
-    "phase2": 2170723,
-    "phase3": 403571,
-    "phase4": 1131,
-    "phase5": 0,
-    "food_sec_req": 170,
-    "funded": 91
   },
   {
     "country": "Niger",
