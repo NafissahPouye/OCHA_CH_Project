@@ -26,7 +26,7 @@
   {
     "country": "Burkina Faso",
     "country_code": "BFA",
-    "date": "2015-11-15",
+    "date": "2015-11-01",
     "phase1": 15158265,
     "phase2": 3122127,
     "phase3": 633483,
@@ -68,8 +68,8 @@
     "phase3": 48895,
     "phase4": 0,
     "phase5": 0,
-    "food_sec_req": "",
-    "funded": ""
+    "food_sec_req": "NULL",
+    "funded": "NULL"
   },
   {
     "country": "Cape Verde",
@@ -80,8 +80,8 @@
     "phase3": 30720,
     "phase4": 811,
     "phase5": 0,
-    "food_sec_req": "",
-    "funded": ""
+    "food_sec_req": "NULL",
+    "funded": "NULL"
   },
   {
     "country": "Cape Verde",
@@ -92,8 +92,8 @@
     "phase3": 10829,
     "phase4": 0,
     "phase5": 0,
-    "food_sec_req": "",
-    "funded": ""
+    "food_sec_req": "NULL",
+    "funded": "NULL"
   },
   {
     "country": "Cape Verde",
@@ -104,20 +104,20 @@
     "phase3": 394,
     "phase4": 0,
     "phase5": 0,
-    "food_sec_req": "",
-    "funded": ""
+    "food_sec_req": "NULL",
+    "funded": "NULL"
   },
   {
     "country": "Cape Verde",
     "country_code": "CPV",
-    "date": "2015-11-15",
+    "date": "2015-11-01",
     "phase1": 450566,
     "phase2": 62540,
     "phase3": 11727,
     "phase4": 0,
     "phase5": 0,
-    "food_sec_req": "",
-    "funded": ""
+    "food_sec_req": "NULL",
+    "funded": "NULL"
   },
   {
     "country": "Cape Verde",
@@ -128,8 +128,8 @@
     "phase3": 8061,
     "phase4": 0,
     "phase5": 0,
-    "food_sec_req": "",
-    "funded": ""
+    "food_sec_req": "NULL",
+    "funded": "NULL"
   },
   {
     "country": "Cape Verde",
@@ -140,8 +140,8 @@
     "phase3": 3648,
     "phase4": 0,
     "phase5": 0,
-    "food_sec_req": "",
-    "funded": ""
+    "food_sec_req": "NULL",
+    "funded": "NULL"
   },
   {
     "country": "Chad",
@@ -194,7 +194,7 @@
   {
     "country": "Chad",
     "country_code": "TCD",
-    "date": "2015-11-15",
+    "date": "2015-11-01",
     "phase1": 8098142,
     "phase2": 1940987,
     "phase3": 387222,
@@ -320,8 +320,8 @@
     "phase3": 88301,
     "phase4": 21422,
     "phase5": 0,
-    "food_sec_req": "",
-    "funded": ""
+    "food_sec_req": "NULL",
+    "funded": "NULL"
   },
   {
     "country": "Guinea-Bissau",
@@ -332,8 +332,8 @@
     "phase3": 29731,
     "phase4": 0,
     "phase5": 0,
-    "food_sec_req": "",
-    "funded": ""
+    "food_sec_req": "NULL",
+    "funded": "NULL"
   },
   {
     "country": "Guinea-Bissau",
@@ -344,8 +344,8 @@
     "phase3": 228954,
     "phase4": 21575,
     "phase5": 0,
-    "food_sec_req": "",
-    "funded": ""
+    "food_sec_req": "NULL",
+    "funded": "NULL"
   },
   {
     "country": "Guinea-Bissau",
@@ -356,8 +356,8 @@
     "phase3": 2910,
     "phase4": 0,
     "phase5": 0,
-    "food_sec_req": "",
-    "funded": ""
+    "food_sec_req": "NULL",
+    "funded": "NULL"
   },
   {
     "country": "Guinea-Bissau",
@@ -368,8 +368,8 @@
     "phase3": 117415,
     "phase4": 18497,
     "phase5": 0,
-    "food_sec_req": "",
-    "funded": ""
+    "food_sec_req": "NULL",
+    "funded": "NULL"
   },
   {
     "country": "Guinea-Bissau",
@@ -380,8 +380,8 @@
     "phase3": 22209,
     "phase4": 0,
     "phase5": 0,
-    "food_sec_req": "",
-    "funded": ""
+    "food_sec_req": "NULL",
+    "funded": "NULL"
   },
   {
     "country": "Mali",
