@@ -74,7 +74,7 @@ var groupPhase5 = dateDimension.group().reduceSum(function (d){
 
   });
 
-  function remove_bins(groupFoodsec) { 
+  function remove_space(groupFoodsec) { 
   return {
     all: function() {
       
@@ -91,7 +91,7 @@ var groupPhase5 = dateDimension.group().reduceSum(function (d){
     if(isNaN(d.funded)){console.log('Not included: ');console.log(d);return 0;} else { return d.funded;}
 
   });
-  function remove_bins(groupFundings) { 
+  function remove_space(groupFundings) { 
   return {
     all: function() {
       
@@ -124,8 +124,9 @@ var groupPhase5 = dateDimension.group().reduceSum(function (d){
             .x(d3.time.scale().domain([new Date(2013, 11, 0), new Date(2017, 3, 31)]))
             .elasticY(true)
             .legend(dc.legend().x($('#Requirement').width()-150).y(0).gap(3))
-            .valueAccessor(function(d){return d.value.avg;})
+            .valueAccessor(function(d){return d.value.avg != "";})
             .shareTitle(false)
+            //.omit("")
             .compose([
                 dc.lineChart(req_trends).group(groupFoodsec, 'Food Sec Requirement').colors(colors[5]).title(function (d) { return [dateFormatPretty1(d.key),  "Food Sec Req: " + numberFormat(d.value) + ' Million US $'].join('\n'); }),
                 dc.lineChart(req_trends).group(groupFundings, 'Funding').colors(colors[6]).title(function (d) { return [dateFormatPretty1(d.key), "Funding: " + numberFormat(d.value) + ' Million US $'].join('\n'); }),

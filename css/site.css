@@ -45,9 +45,24 @@
 .x-axis-label{
     font-size:0.8em;
 }
+.spacer {
+    margin-top:40px;
+}
+
+.tooltip {   
+  position: absolute;           
+  text-align: center;                  
+  font: 12px sans-serif;        
+  background: #f3f3f3;
+  padding:10px;
+  border-radius:5px;
+}
 
 #carte {
     height:460px;
+    top: 5px;
+    box-sizing: 50px;
+    border-width: 10px;
 }
 
 
