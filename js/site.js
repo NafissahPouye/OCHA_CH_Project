@@ -87,7 +87,6 @@ var groupPhase5 = dateDimension.group().reduceSum(function (d){
 };
   
   var groupfunding = dateDimension.group().reduceSum(function (d){ return d.funded ;})
-
   var groupFundings = {all:function () {return groupfunding.all().filter(function(d) {
       return d.value != 0;
     })
@@ -104,8 +103,8 @@ var groupPhase5 = dateDimension.group().reduceSum(function (d){
             .valueAccessor(function(d){return d.value.avg;})
             .shareTitle(false)
             .compose([
-                dc.lineChart(req_trends).group(groupFoodsec, 'Food Sec Requirement').colors(colors[5]).title(function (d) { return [dateFormatPretty1(d.key),  "Food Sec Req: " + numberFormat(d.value) + ' Million US $'].join('\n'); }),
-                dc.lineChart(req_trends).group(groupFundings, 'Funding').colors(colors[6]).title(function (d) { return [dateFormatPretty1(d.key), "Funding: " + numberFormat(d.value) + ' Million US $'].join('\n'); }),
+                dc.lineChart(req_trends).group(groupFoodsec, 'Food Sec Requirement').defined(function(d) { return !isNaN(d[1]); }).colors(colors[5]).title(function (d) { return [dateFormatPretty1(d.key),  "Food Sec Req: " + numberFormat(d.value) + ' Million US $'].join('\n'); }),
+                dc.lineChart(req_trends).group(groupFundings, 'Funding').defined(function(d) { return d.y; }).colors(colors[6]).title(function (d) { return [dateFormatPretty1(d.key), "Funding: " + numberFormat(d.value) + ' Million US $'].join('\n'); }),
               ])
             .margins({top: 20, right: 0, bottom: 30, left: 60})
             .brushOn(false)
